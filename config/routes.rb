@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get "posts/new"
+  get "posts/create"
+  get "posts/update"
+  get "posts/edit"
+  get "posts/destroy"
+  get "posts/index"
+  get "posts/show"
   devise_for :users
 
   resources :users, :posts
