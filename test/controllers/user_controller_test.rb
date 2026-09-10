@@ -1,4 +1,4 @@
-require "test_helper"
+require_relative "test_helper"
 
 class UserControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
@@ -6,5 +6,7 @@ class UserControllerTest < ActionDispatch::IntegrationTest
   # end
   #
   test "should get new" do
+    get users_path
+    assert_response :success
   end
 end
