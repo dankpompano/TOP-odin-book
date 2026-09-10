@@ -35,6 +35,6 @@ class PostsController < ApplicationController
 
   private
   def posts_params
-    params.require(:body)
+    params.require(:subject, :body)
   end
 end
