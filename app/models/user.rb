@@ -8,4 +8,6 @@ class User < ApplicationRecord
   validates :username, presence: true
 
   has_many :posts
+  has_many :incoming_requests, class_name: "FriendRequest", foreign_key: "recipient_id", dependent: :destroy, inverse_of: "recipient"
+  has_many :sent_requests, class_name: "FriendRequest", foreign_key: "sender_id", dependent: :destroy, inverse_of: "sender"
 end
