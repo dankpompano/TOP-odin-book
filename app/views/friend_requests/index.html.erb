@@ -1,0 +1,38 @@
+<h1>FriendRequests#index</h1>
+<p>Find me in app/views/friend_requests/index.html.erb</p>
+
+<table>
+  <%= form_with model: @friend_requests do |form| %>
+    <% form.each do |user| %>
+    <thead>
+      <th>Incoming Requests</th>
+    </thead>
+    <% end %>
+  <% end %>
+  <thead>
+      <th>Incoming Requests</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Jane</td>
+      <td>Doe</td>
+      <td>Software Engineer</td>
+      <%=button_to "Accept"%>
+      <%=button_to "Decline"%>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+      <th>Outgoing Requests</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>To</td>
+      <td>Doe</td>
+      <td>Software Engineer</td>
+    </tr>
+  </tbody>
+</table>
+
