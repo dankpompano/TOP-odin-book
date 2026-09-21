@@ -2,13 +2,11 @@
 <p>Find me in app/views/friend_requests/index.html.erb</p>
 
 <table>
-  <%= form_with model: @friend_requests do |form| %>
-    <% form.each do |user| %>
-    <thead>
-      <th>Incoming Requests</th>
-    </thead>
+    <% @friend_requests.each do |request| %>
+      <thead>
+        <th>Incoming Requests</th>
+      </thead>
     <% end %>
-  <% end %>
   <thead>
       <th>Incoming Requests</th>
   </thead>
