@@ -2,13 +2,27 @@
 <p>Find me in app/views/friend_requests/index.html.erb</p>
 
 <table>
-    <% @friend_requests.each do |request| %>
-      <thead>
-        <th>Incoming Requests</th>
-      </thead>
-    <% end %>
+
   <thead>
+    <div>
+      <th>Send a request</th>
+        <%= form_with url: friend_requests_index_path, method: :get do |form| %>
+          <%= form.label :send_request, "Connect with Users: " %>
+          <%= form.text_field :send_request, value: params[:users], placeholder: "Enter username..." %>    
+          <%= form.submit "Send Request" %>
+        <% end %>
+    </div>
+  </thead>
+  <thead>
+    <div>
       <th>Incoming Requests</th>
+      <% @friend_requests.each do |request| %>
+        <thead>
+          <th><%=request.recipient_id.username%></th>
+          <th><%=request.status%></th>
+        </thead>
+      <% end %>
+    </div>
   </thead>
   <tbody>
     <tr>
@@ -24,6 +38,12 @@
 <table>
   <thead>
       <th>Outgoing Requests</th>
+      <% @friend_requests.each do |request| %>
+        <thead>
+          <th><%=request.sender_id.username%></th>
+          <th><%=request.status%></th>
+        </thead>
+      <% end %>
   </thead>
   <tbody>
     <tr>

@@ -33,6 +33,11 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.expect(:email, :encrypted_password, :first_name, :last_name)
+    params.expect(:email,
+                  :encrypted_password,
+                  :first_name,
+                  :last_name,
+                  incoming_requests_attributes: [ :sender_id, :recipient_id, :status ],
+                  sent_requests_attributes: [ :sender_id, :recipient_id, :status ])
   end
 end

@@ -1,6 +1,10 @@
 class FriendRequestsController < ApplicationController
   def index
     @friend_requests = FriendRequest.all
+
+    if params[:send_request].present?
+
+    end
   end
 
   def show
@@ -20,11 +24,20 @@ class FriendRequestsController < ApplicationController
     @friend_request.destroy
   end
 
-  def accept
+  protected
+  def send_request(recipient_id, sender_id)
+    @friend_request = FriendRequest.new(sender_id: sender_id, recipient_id: recipient_id, status: "Sent")
+  end
+
+  def accept(recipient_id, sender_id)
+    @friend_request = FriendRequest.find(params[sender_id: sender_id, recipient_id: recipient_id])
+    @friend_request = FriendRequest.update(status: "Accepted")
   end
 
 
-  def decline
+  def decline(recipient_id, sender_id)
+    @friend_request = FriendRequest.find(params[sender_id: sender_id, recipient_id: recipient_id])
+    @friend_request = FriendRequest.update(status: "Decline")
   end
 
   private
