@@ -7,8 +7,8 @@
     <div>
       <th>Send a request</th>
         <%= form_with url: friend_requests_index_path, method: :get do |form| %>
-          <%= form.label :send_request, "Connect with Users: " %>
-          <%= form.text_field :send_request, value: params[:users], placeholder: "Enter username..." %>    
+          <%= form.label :username, "Connect with Users: " %>
+          <%= form.text_field :username, value: params[:users], placeholder: "Enter username..." %>    
           <%= form.submit "Send Request" %>
         <% end %>
     </div>
@@ -17,22 +17,20 @@
     <div>
       <th>Incoming Requests</th>
       <% @friend_requests.each do |request| %>
-        <thead>
-          <th><%=request.recipient_id.username%></th>
-          <th><%=request.status%></th>
-        </thead>
+        <tbody>
+          <th>From:</th>
+          <th>Status:</th>
+
+          <tr>
+            <td><%=request.sender.username%></td>
+            <td><%=request.status%></td>
+            <%=button_to "Accept"%>
+            <%=button_to "Decline"%>
+          </tr>
+        </tbody>
       <% end %>
     </div>
   </thead>
-  <tbody>
-    <tr>
-      <td>Jane</td>
-      <td>Doe</td>
-      <td>Software Engineer</td>
-      <%=button_to "Accept"%>
-      <%=button_to "Decline"%>
-    </tr>
-  </tbody>
 </table>
 
 <table>
@@ -40,7 +38,6 @@
       <th>Outgoing Requests</th>
       <% @friend_requests.each do |request| %>
         <thead>
-          <th><%=request.sender_id.username%></th>
           <th><%=request.status%></th>
         </thead>
       <% end %>

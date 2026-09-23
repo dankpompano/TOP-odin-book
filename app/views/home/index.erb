@@ -1,4 +1,12 @@
 <h1>Home</h1>
+
+    <div>
+        <% if user_signed_in? %>
+        <p>
+            Welcome, <%=current_user.username%>
+        </p>
+        <% end %>
+    </div>
     <%# friend requests %>
     <div>
         <%=link_to "Friend Requests", friend_requests_index_path %>

@@ -1,9 +1,12 @@
 class FriendRequestsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @friend_requests = FriendRequest.all
 
-    if params[:send_request].present?
-
+    if params[:username].present?
+      user = User.find_by(username: params[:username])
+      request = send_request(user.id, current_user.id)
+      request.save
     end
   end
 
@@ -26,7 +29,8 @@ class FriendRequestsController < ApplicationController
 
   protected
   def send_request(recipient_id, sender_id)
-    @friend_request = FriendRequest.new(sender_id: sender_id, recipient_id: recipient_id, status: "Sent")
+    friend_request = FriendRequest.new(sender_id: sender_id, recipient_id: recipient_id, status: "Sent")
+    friend_request
   end
 
   def accept(recipient_id, sender_id)
@@ -42,6 +46,6 @@ class FriendRequestsController < ApplicationController
 
   private
   def request_params
-    params.require(:sender_id, :recipient_id, :status)
+    params.require(:id, :sender_id, :recipient_id, :status)
   end
 end
