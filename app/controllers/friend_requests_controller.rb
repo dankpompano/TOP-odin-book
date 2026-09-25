@@ -27,21 +27,20 @@ class FriendRequestsController < ApplicationController
     @friend_request.destroy
   end
 
-  protected
   def send_request(recipient_id, sender_id)
     friend_request = FriendRequest.new(sender_id: sender_id, recipient_id: recipient_id, status: "Sent")
     friend_request
   end
 
-  def accept(recipient_id, sender_id)
-    @friend_request = FriendRequest.find(params[sender_id: sender_id, recipient_id: recipient_id])
-    @friend_request = FriendRequest.update(status: "Accepted")
+  def accept
+    friend_request = FriendRequest.find(params[:id])
+    friend_request.update(status: "Accepted")
   end
 
 
-  def decline(recipient_id, sender_id)
-    @friend_request = FriendRequest.find(params[sender_id: sender_id, recipient_id: recipient_id])
-    @friend_request = FriendRequest.update(status: "Decline")
+  def decline
+    friend_request = FriendRequest.find(params[:id])
+    friend_request.update(status: "Declined")
   end
 
   private

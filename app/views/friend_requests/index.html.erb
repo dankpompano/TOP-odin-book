@@ -24,8 +24,8 @@
           <tr>
             <td><%=request.sender.username%></td>
             <td><%=request.status%></td>
-            <%=button_to "Accept"%>
-            <%=button_to "Decline"%>
+            <%=button_to "Accept", accept_friend_request_path(request), action: "accept"%>
+            <%=button_to "Decline", decline_friend_request_path(request), action: "decline"%>
           </tr>
         </tbody>
       <% end %>

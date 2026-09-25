@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "friend_requests/new"
   get "friend_requests/create"
   get "friend_requests/destroy"
+  get "friend_requests/accept"
   get "posts/new"
   get "posts/create"
   get "posts/update"
@@ -13,7 +14,14 @@ Rails.application.routes.draw do
   get "posts/show"
   devise_for :users, controllers: { registrations: "users/registrations" }
 
-  resources :users, :posts
+  resources :users
+  resources :posts
+  resources :friend_requests do |request|
+    member do
+      post "accept"
+      post "decline"
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
