@@ -3,11 +3,14 @@
 
 <h1>Create a new post</h1>
 <%= form_with model: @post do |f| %>
-  <%= f.label "Subject" %>
-  <%= f.text_field :subject %><br>
+  <div>
+    <h3>Post to: <%=current_user.username%>'s profile</h3>
+    <%= f.label :subject %>
+    <%= f.text_field :subject %><br>
 
-  <%= f.label "Body" %>
-  <%= f.text_field :body %>
+    <%= f.label :body %>
+    <%= f.text_field :body %><br>
 
-  <%= f.submit "Post" %>
+    <%= f.submit "Post" %> 
+  </div>
 <% end %>

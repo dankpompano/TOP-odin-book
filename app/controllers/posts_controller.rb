@@ -1,10 +1,17 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
   def new
     @post = Post.new
   end
 
   def create
-    @post = Post.create(posts_params)
+    @post = current_user.posts.new(posts_params)
+
+    if @post.save
+      redirect_to @post, notice: "Post was successfully created."
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def update
@@ -35,6 +42,6 @@ class PostsController < ApplicationController
 
   private
   def posts_params
-    params.require(:subject, :body)
+    params.require(:post).permit(:subject, :body)
   end
 end
