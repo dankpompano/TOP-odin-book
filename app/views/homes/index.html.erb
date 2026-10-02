@@ -17,6 +17,11 @@
     <%# posts %>
     <div>
         <h2>Your Feed</h2>
+        <% @feed.each do |post| %>
+            <h5><%=post.subject%></h5>
+            <h6><%=post.body%></h6>
+            <%=button_to "Like" %>
+        <% end %>
     </div>
     
     <div>

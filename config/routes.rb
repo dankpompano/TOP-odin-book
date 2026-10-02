@@ -1,20 +1,22 @@
 Rails.application.routes.draw do
   get "friend_requests/index"
-  get "friend_requests/show"
-  get "friend_requests/new"
-  get "friend_requests/create"
-  get "friend_requests/destroy"
-  get "friend_requests/accept"
-  get "posts/new"
-  get "posts/create"
-  get "posts/update"
-  get "posts/edit"
-  get "posts/destroy"
-  get "posts/index"
-  get "posts/show"
+  # get "friend_requests/show"
+  # get "friend_requests/new"
+  # get "friend_requests/create"
+  # get "friend_requests/destroy"
+  # get "friend_requests/accept"
+  # get "posts/new"
+  # get "posts/create"
+  # get "posts/update"
+  # get "posts/edit"
+  # get "posts/destroy"
+  # get "posts/index"
+  # get "posts/show"
+  get "homes/index"
   devise_for :users, controllers: { registrations: "users/registrations" }
 
   resources :users
+  resources :homes
   resources :posts
   resources :friend_requests do |request|
     member do
@@ -34,5 +36,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  root "home#index"
+  root "homes#index"
 end
